@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdatePageController">
+   <children>
+      <AnchorPane layoutX="31.0" layoutY="20.0" prefHeight="406.0" prefWidth="538.0">
+         <children>
+            <TextField fx:id="title" editable="false" layoutX="95.0" layoutY="29.0" prefHeight="27.0" prefWidth="421.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="22.0">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <Text layoutX="3.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" wrappingWidth="63.921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="3.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="84.921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="userID" editable="false" layoutX="95.0" layoutY="120.0" prefHeight="27.0" prefWidth="421.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="22.0">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="contact" layoutX="95.0" layoutY="191.0" prefHeight="27.0" prefWidth="421.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="22.0">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <Text layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Info" wrappingWidth="100.921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="3.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="84.921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="description" layoutX="95.0" layoutY="231.0" prefHeight="157.0" prefWidth="421.0" />
+            <Text layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket ID" wrappingWidth="63.921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="ticketID" editable="false" layoutX="95.0" layoutY="73.0" prefHeight="27.0" prefWidth="421.0">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <Button fx:id="updateButton" layoutX="461.0" layoutY="402.0" mnemonicParsing="false" text="Update" />
+            <Text layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="100.921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="open" layoutX="95.0" layoutY="162.0" mnemonicParsing="false" text="Open" />
+            <RadioButton fx:id="closed" layoutX="161.0" layoutY="162.0" mnemonicParsing="false" text="Closed" />
+         </children>
+         <opaqueInsets>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </opaqueInsets>
+      </AnchorPane>
+      <Button fx:id="backButton" layoutX="26.0" layoutY="13.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>

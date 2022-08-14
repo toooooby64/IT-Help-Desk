@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="956.0" prefWidth="995.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AssignTicketController">
+   <children>
+      <Pane prefHeight="210.0" prefWidth="994.0" style="-fx-background-color: #6FC9E7;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="291.0" layoutY="110.0" stroke="#6fc9e7" strokeType="OUTSIDE" strokeWidth="5.0" width="413.0" />
+            <Label layoutX="333.0" layoutY="118.0" text="Assign Ticket">
+               <font>
+                  <Font size="57.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+      <VBox layoutY="210.0" prefHeight="746.0" prefWidth="250.0" style="-fx-background-color: #FECCA8;">
+         <children>
+            <GridPane prefHeight="122.0" prefWidth="246.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="123.0" text="Name: ">
+                     <font>
+                        <Font name="MS Outlook" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="22.0" prefWidth="123.0" text="Title:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="MS Outlook" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="name" prefHeight="22.0" prefWidth="123.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="MS Outlook" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="22.0" prefWidth="123.0" text="Admin" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="MS Outlook" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="186.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane prefHeight="622.0" prefWidth="246.0" vgap="5.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="242.0" prefWidth="332.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="Home Page" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToViewTickets" prefHeight="276.0" prefWidth="386.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="View All Tickets" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToCreatePage" prefHeight="281.0" prefWidth="390.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="Create a Ticket" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </Button>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </VBox>
+      <GridPane hgap="25.0" layoutX="259.0" layoutY="234.0" prefHeight="398.0" prefWidth="530.0" vgap="35.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="101.0">
+               <font>
+                  <Font name="MS Outlook" size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket ID" wrappingWidth="76.921875" GridPane.rowIndex="1">
+               <font>
+                  <Font name="MS Outlook" size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" wrappingWidth="63.921875" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="100.921875" GridPane.rowIndex="3">
+               <font>
+                  <Font name="MS Outlook" size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Info" wrappingWidth="100.921875" GridPane.rowIndex="4">
+               <font>
+                  <Font name="MS Outlook" size="16.0" />
+               </font>
+            </Text>
+            <Label prefHeight="17.0" prefWidth="101.0" text="Assign To?" GridPane.rowIndex="5">
+               <font>
+                  <Font name="MS Outlook" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="title" editable="false" prefHeight="27.0" prefWidth="421.0" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="ticketID" editable="false" prefHeight="27.0" prefWidth="421.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="userID" editable="false" prefHeight="27.0" prefWidth="421.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <ChoiceBox fx:id="status" disable="true" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="contact" editable="false" prefHeight="27.0" prefWidth="421.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="assign" prefHeight="25.0" prefWidth="421.0" promptText="Enter Employee ID..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="425.0" />
+         </columnConstraints>
+         <padding>
+            <Insets bottom="35.0" />
+         </padding>
+         <rowConstraints>
+            <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <TextArea fx:id="description" editable="false" layoutX="368.0" layoutY="632.0" prefHeight="157.0" prefWidth="421.0" />
+      <Text layoutX="259.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="84.921875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="updateButton" layoutX="909.0" layoutY="903.0" mnemonicParsing="false" onAction="#updateTable" text="Update" />
+   </children>
+</AnchorPane>
