@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Employee;
 import model.SearchTypes;
 import model.Ticket;
 
@@ -140,6 +141,39 @@ public class PostgrseDAO implements TicketDAO {
 				long assigedTo = result.getLong(8);
 				Ticket foundTicket = new Ticket(id, ticketName, userID, contactInfo, description, status, assigned,
 						assigedTo);
+				ticketList.add(foundTicket);
+			}
+
+			return ticketList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	@Override
+	public List<Ticket> allAssignedTickets(Employee employee) {
+		Statement statement;
+		String openTicketQuery = "SELECT * FROM \"Tickets\" WHERE \"assignedTo\" = " + employee.getEmployeeID();
+		ArrayList<Ticket> ticketList = new ArrayList<Ticket>(getRowCount());
+		try {
+			statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(openTicketQuery);
+			while (result.next()) {
+				long id = result.getLong(1);
+				long userID = result.getLong(2);
+				String ticketName = result.getString(3);
+				String contactInfo = result.getString(4);
+				String description = result.getString(5);
+				boolean assigned = result.getBoolean(6);
+				String status = result.getString(7);
+				long assigedTo = result.getLong(8);
+				Ticket foundTicket = new Ticket(id, ticketName, userID, contactInfo, description, status, assigned,
+						assigedTo);
+				
+				System.out.println(foundTicket);
 				ticketList.add(foundTicket);
 			}
 

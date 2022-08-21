@@ -16,15 +16,18 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Employee;
 import model.Ticket;
 import model.TicketModel;
 
 public class AssignTicketController implements Initializable {
+	private String type;
 	private TicketModel model;
 	private Parent root;
 	private Scene scene;
 	private Stage stage;
 	private Ticket ticket;
+	private Employee employee;
 	@FXML
 	Button backButton;
 	@FXML
@@ -44,9 +47,11 @@ public class AssignTicketController implements Initializable {
 	@FXML
 	ChoiceBox<String> status;
 
-	public AssignTicketController(TicketModel model, Ticket ticket) {
+	public AssignTicketController(TicketModel model, Ticket ticket,String type, Employee employee) {
 		this.model = model;
 		this.ticket = ticket;
+		this.type = type;
+		this.employee = employee;
 	}
 
 	@Override
@@ -64,7 +69,7 @@ public class AssignTicketController implements Initializable {
 	public void goToViewTickets(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/ViewTicket.fxml"));
 		loader.setControllerFactory(c -> {
-			return new ViewTicketController(model);
+			return new ViewTicketController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -81,7 +86,7 @@ public class AssignTicketController implements Initializable {
 	public void goToHomePage(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model);
+			return new HomePageController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -97,7 +102,7 @@ public class AssignTicketController implements Initializable {
 	public void goToCreatePage(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/CreateTicketView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new CreateTicketController(model);
+			return new CreateTicketController(model,employee,type);
 		});
 		try {
 			root = loader.load();

@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import dao.TicketDAO;
+import javafx.util.Callback;
 
 public class TicketModel {
 
@@ -44,6 +45,10 @@ public class TicketModel {
 	
 	public List<Ticket> findAllOpenTickets() {
 		return ticketDAO.allOpenTickets();
+	}
+
+	public List<Ticket> findAssignedTickets(Employee employee) {
+		return ticketDAO.allAssignedTickets(employee);
 	}
 	
 

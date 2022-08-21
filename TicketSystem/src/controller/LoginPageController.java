@@ -57,7 +57,7 @@ public class LoginPageController {
 	private void adminLogin(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model,"Admin");
+			return new HomePageController(model,foundEmployee,"admin");
 		});
 		try {
 			root = loader.load();
@@ -73,7 +73,7 @@ public class LoginPageController {
 	private void itLogin(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/IT/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model,"IT");
+			return new HomePageController(model,foundEmployee,"IT");
 		});
 		try {
 			root = loader.load();
@@ -90,7 +90,7 @@ public class LoginPageController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff/HomeView.fxml"));
 		String staff = "staff";
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model,staff);
+			return new HomePageController(model,foundEmployee,staff);
 		});
 		try {
 			root = loader.load();

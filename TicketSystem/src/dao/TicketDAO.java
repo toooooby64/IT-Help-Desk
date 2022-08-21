@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import model.SearchTypes;
+import model.Employee;
 import model.Ticket;
 
 public interface TicketDAO extends DAO {
@@ -15,4 +15,5 @@ public interface TicketDAO extends DAO {
 	public int getNumOfOpenTickets();
 	public int getNumOfUnassignedTickets();
 	public List<Ticket> allOpenTickets();
+	public List<Ticket> allAssignedTickets(Employee employee);
 }

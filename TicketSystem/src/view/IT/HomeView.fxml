@@ -111,7 +111,7 @@
                <font>
                   <Font name="MS Outlook" size="41.0" />
                </font></Button>
-            <Button fx:id="view" alignment="CENTER" mnemonicParsing="false" onAction="#goToAssignScene" prefHeight="305.0" prefWidth="541.0" style="-fx-background-color: FECCA8; -fx-border-color: #1e2b3c; -fx-border-width: 2;" text="View Assigned Tickets" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
+            <Button fx:id="view" alignment="CENTER" mnemonicParsing="false" onAction="#goToITAssignScene" prefHeight="305.0" prefWidth="541.0" style="-fx-background-color: FECCA8; -fx-border-color: #1e2b3c; -fx-border-width: 2;" text="View Assigned Tickets" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
                <font>
                   <Font name="MS Outlook" size="41.0" />
                </font>

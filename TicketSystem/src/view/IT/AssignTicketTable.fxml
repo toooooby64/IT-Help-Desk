@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="956.0" prefWidth="1650.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ITAssignedTickets">
+   <children>
+      <VBox layoutY="210.0" prefHeight="756.0" prefWidth="250.0" style="-fx-background-color: #FECCA8;">
+         <children>
+            <GridPane prefHeight="762.0" prefWidth="246.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#goToHomePage" prefHeight="263.0" prefWidth="275.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="Home Page" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <opaqueInsets>
+                        <Insets top="2.0" />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToViewScene" prefHeight="219.0" prefWidth="545.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="View all Tickets" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToCreatePage" prefHeight="219.0" prefWidth="545.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="Create a Ticket" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToUpdatePage" prefHeight="219.0" prefWidth="545.0" style="-fx-background-color: #FECCA8; -fx-border-width: 2; -fx-border-color: #1e2b3c;" text="Update Ticket" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="MS Outlook" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <Pane prefHeight="210.0" prefWidth="1650.0" style="-fx-background-color: #6FC9E7;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="620.0" layoutY="104.0" stroke="#6fc9e7" strokeType="OUTSIDE" strokeWidth="5.0" width="413.0" />
+            <Label layoutX="632.0" layoutY="112.0" prefHeight="84.0" prefWidth="391.0" text="Assign a Ticket">
+               <font>
+                  <Font size="57.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchField" layoutX="612.0" layoutY="25.0" prefHeight="25.0" prefWidth="430.0" promptText="Search by Ticket ID or Employee ID..." />
+            <Label layoutX="505.0" layoutY="25.0" prefHeight="25.0" prefWidth="107.0" text="Search Ticket...">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+      <TableView fx:id="table" layoutX="249.0" layoutY="210.0" prefHeight="756.0" prefWidth="1401.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="210.0">
+        <columns>
+          <TableColumn fx:id="idCol" editable="false" minWidth="33.0" prefWidth="57.0" text="Ticket ID" />
+          <TableColumn fx:id="titleCol" minWidth="133.0" prefWidth="274.0" text="Title" />
+            <TableColumn fx:id="userCol" minWidth="13.0" prefWidth="77.0" text="Employee ID" />
+            <TableColumn fx:id="contactCol" minWidth="87.0" prefWidth="211.0" text="Contact" />
+            <TableColumn fx:id="descriptionCol" maxWidth="578.0" minWidth="133.0" prefWidth="558.0" text="Description" />
+            <TableColumn fx:id="statusCol" minWidth="22.0" prefWidth="63.0" text="Status" />
+            <TableColumn fx:id="assigned" minWidth="51.0" prefWidth="67.0" text="Assigned?" />
+            <TableColumn fx:id="assignedTo" minWidth="51.0" prefWidth="92.0" text="Assigned To?" />
+        </columns>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TableView>
+   </children>
+</AnchorPane>

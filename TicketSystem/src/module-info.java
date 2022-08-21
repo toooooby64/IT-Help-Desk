@@ -10,6 +10,6 @@ module TicketSystem {
 	requires java.sql;
 	requires transitive javafx.base;
 	
-	opens application to javafx.graphics, javafx.fxml;
+	opens application to javafx.graphics, javafx.fxml,javafx.media;
 	opens controller to javafx.fxml;
 }

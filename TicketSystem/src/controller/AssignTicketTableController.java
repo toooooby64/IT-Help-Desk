@@ -25,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Employee;
 import model.Ticket;
 import model.TicketModel;
 
@@ -33,6 +34,7 @@ public class AssignTicketTableController implements Initializable {
 	private Parent root;
 	private Scene scene;
 	private Stage stage;
+	private Employee employee;
 	private ObservableList<Ticket> items;
 
 	@FXML
@@ -59,9 +61,10 @@ public class AssignTicketTableController implements Initializable {
 	private TableColumn<Ticket, Long> assignedTo;
 	private String type;
 
-	public AssignTicketTableController(TicketModel model, String type) {
+	public AssignTicketTableController(TicketModel model, Employee employee, String type) {
 		this.model = model;
 		this.type = type;
+		this.employee = employee;
 	}
 
 	@Override
@@ -74,7 +77,7 @@ public class AssignTicketTableController implements Initializable {
 	public void goToHomePage(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model, type);
+			return new HomePageController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -92,7 +95,7 @@ public class AssignTicketTableController implements Initializable {
 			Ticket selectedRow = table.getItems().get(table.getSelectionModel().getSelectedIndex());
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/AssignTicket.fxml"));
 			loader.setControllerFactory(c -> {
-				return new AssignTicketController(model, selectedRow);
+				return new AssignTicketController(model, selectedRow,type,employee);
 			});
 			root = loader.load();
 			scene = new Scene(root);
@@ -111,7 +114,7 @@ public class AssignTicketTableController implements Initializable {
 	public void goToViewScene(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/ViewTicket.fxml"));
 		loader.setControllerFactory(c -> {
-			return new ViewTicketController(model, type);
+			return new ViewTicketController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -128,7 +131,7 @@ public class AssignTicketTableController implements Initializable {
 	public void goToCreatePage(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/CreateTicketView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new CreateTicketController(model, type);
+			return new CreateTicketController(model,employee, type);
 		});
 		try {
 			root = loader.load();

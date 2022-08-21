@@ -19,6 +19,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Employee;
 import model.Ticket;
 import model.TicketModel;
 
@@ -30,27 +31,37 @@ public class UpdatePageController implements Initializable {
 	private Stage stage;
 	private Ticket ticket;
 	private String type;
+	private Employee employee;
 	@FXML
-	TextField userID;
+	private TextField userID;
 	@FXML
-	TextField ticketID;
+	private TextField ticketID;
 	@FXML
-	TextField title;
+	private TextField title;
 	@FXML
-	TextField contact;
+	private TextField contact;
 	@FXML
-	TextField assign;
+	private TextField assign;
 	@FXML
-	RadioButton unassign;
+	private RadioButton unassign;
 	@FXML
-	TextArea description;
+	private TextArea description;
 	@FXML
-	ChoiceBox<String> status;
+	private ChoiceBox<String> status;
+	@FXML
+	private Button homeButton;
+	@FXML
+	private Button viewButton;
+	@FXML
+	private Button assignButton;
 
-	public UpdatePageController(TicketModel model, Ticket ticket) {
+	public UpdatePageController(TicketModel model, Ticket ticket, String type, Employee employee) {
 		this.model = model;
 		this.ticket = ticket;
+		this.type = type;
+		this.employee = employee;
 	}
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -67,7 +78,7 @@ public class UpdatePageController implements Initializable {
 	public void goToViewTickets(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/ViewTicket.fxml"));
 		loader.setControllerFactory(c -> {
-			return new ViewTicketController(model, type);
+			return new ViewTicketController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -83,7 +94,7 @@ public class UpdatePageController implements Initializable {
 	public void goToAssignScene(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/AssignTicketTable.fxml"));
 		loader.setControllerFactory(c -> {
-			return new AssignTicketTableController(model, type);
+			return new AssignTicketTableController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -99,7 +110,7 @@ public class UpdatePageController implements Initializable {
 	public void goToHomePage(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model, type);
+			return new HomePageController(model,employee,type);
 		});
 		try {
 			root = loader.load();
@@ -112,7 +123,7 @@ public class UpdatePageController implements Initializable {
 		stage.show();
 	}
 
-	public void updateTable() {
+	public void adminUpdateTable() {
 		ticket.setContact(contact.getText());
 		ticket.setDescription(description.getText());
 		ticket.setStatus(status.getValue());
@@ -121,6 +132,13 @@ public class UpdatePageController implements Initializable {
 		} else
 			ticket.setAssignedTo(Long.valueOf(assign.getText()));
 		ticket.setAssigned(!unassign.isSelected());
+		model.updateTicket(ticket);
+	}
+	
+	public void itUpdateTable() {
+		ticket.setContact(contact.getText());
+		ticket.setDescription(description.getText());
+		ticket.setStatus(status.getValue());
 		model.updateTicket(ticket);
 	}
 

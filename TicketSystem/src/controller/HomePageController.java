@@ -13,8 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Employee;
 import model.TicketModel;
@@ -25,6 +23,8 @@ public class HomePageController implements Initializable {
 	@FXML
 	private Button view;
 	@FXML
+	private Button assign;
+	@FXML
 	private Label openTicketLabel;
 	@FXML
 	private Label unassignedTicketLabel;
@@ -34,23 +34,26 @@ public class HomePageController implements Initializable {
 	private Scene scene;
 	private Stage stage;
 	private TicketModel model;
+	private Employee employee;
 	private String type;
 	
-	public HomePageController(TicketModel model, String type) {
+	public HomePageController(TicketModel model, Employee employee, String type ) {
 		this.model = model;
 		this.type = type;
+		this.employee = employee;
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		openTicketLabel.setText(String.valueOf(model.getNumOfOpenTicket()));
 		unassignedTicketLabel.setText(String.valueOf(model.getNumOfUnassignedTicket()));
+		name.setText(employee.getFirstName() + " " + employee.getLastName());
 	}
 	
 	public void goToCreateScene(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/CreateTicketView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new CreateTicketController(model,type);
+			return new CreateTicketController(model,employee,type);
 		});
 		try {
 			root = loader.load();
@@ -67,7 +70,7 @@ public class HomePageController implements Initializable {
 	public void goToViewScene(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/ViewTicket.fxml"));
 		loader.setControllerFactory(c -> {
-			return new ViewTicketController(model,type);
+			return new ViewTicketController(model,employee,type);
 		});
 		try {
 			root = loader.load();
@@ -80,10 +83,29 @@ public class HomePageController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void goToAssignScene(ActionEvent event,String type) {
+	public void goToAssignScene(ActionEvent event) {
+		System.out.println(type);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/AssignTicketTable.fxml"));
 		loader.setControllerFactory(c -> {
-			return new AssignTicketTableController(model, type);
+			return new AssignTicketTableController(model,employee, type);
+		});
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		scene = new Scene(root);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void goToITAssignScene(ActionEvent event) {
+		System.out.println(type);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/AssignTicketTable.fxml"));
+		loader.setControllerFactory(c -> {
+			return new ITAssignedTickets(model,employee, type);
 		});
 		try {
 			root = loader.load();

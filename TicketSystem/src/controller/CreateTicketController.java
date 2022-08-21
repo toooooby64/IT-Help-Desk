@@ -1,43 +1,60 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import model.Employee;
 import model.TicketModel;
 
-public class CreateTicketController {
-
+public class CreateTicketController implements Initializable{
+	private String type;
 	private TicketModel model;
 	private Parent root;
 	private Scene scene;
 	private Stage stage;
+	private Employee employee;
 	@FXML
-	Button submitButton;
+	private Button submitButton;
 	@FXML
-	TextField title;
+	private TextField title;
 	@FXML
-	TextField userID;
+	private TextField userID;
 	@FXML
-	TextField contact;
+	private TextField contact;
 	@FXML
-	TextArea description;
-	private String type;
-	public CreateTicketController(TicketModel test, String type) {
+	private TextArea description;
+	@FXML
+	private Label name;
+	
+
+	
+	public CreateTicketController(TicketModel test, Employee employee, String type) {
 		this.model = test;
 		this.type = type;
+		this.employee = employee;
+	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		name.setText(employee.getFirstName() + " " + employee.getLastName());
+		
 	}
 
 	public void onSubmit(ActionEvent event) {
@@ -53,7 +70,7 @@ public class CreateTicketController {
 		System.out.println(type);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model, type);
+			return new HomePageController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -70,7 +87,7 @@ public class CreateTicketController {
 	public void goToViewTickets(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/ViewTicket.fxml"));
 		loader.setControllerFactory(c -> {
-			return new ViewTicketController(model, type);
+			return new ViewTicketController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -87,7 +104,7 @@ public class CreateTicketController {
 	public void goToAssignScene(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/AssignTicketTable.fxml"));
 		loader.setControllerFactory(c -> {
-			return new AssignTicketTableController(model, type);
+			return new AssignTicketTableController(model,employee, type);
 		});
 		try {
 			root = loader.load();
@@ -126,6 +143,8 @@ public class CreateTicketController {
 		alert.showAndWait();
 		alert.onCloseRequestProperty().set(null);
 	}
+
+
 	
 
 }

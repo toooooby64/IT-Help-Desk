@@ -1,5 +1,6 @@
 package dao;
 
+
 public interface DAO {
 
 	public void connect() throws Exception;
