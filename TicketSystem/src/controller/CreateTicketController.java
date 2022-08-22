@@ -141,7 +141,7 @@ public class CreateTicketController implements Initializable{
 		alert.setTitle("Ticket Confirmed");
 		alert.setHeaderText("Your ticket has been submitted!");
 		//This wont be able to scale if multiple people were to submit a ticket at the same time but it works for this specific application
-		alert.setContentText("Your ticket number is " + model.findAll().get(model.findAll().size()).getTicketID() +"\n Thank you!" );
+		alert.setContentText("Please look at your tickets for further details!" );
 		alert.showAndWait();
 		alert.onCloseRequestProperty().set(null);
 	}
