@@ -51,5 +51,9 @@ public class TicketModel {
 		return ticketDAO.allAssignedTickets(employee);
 	}
 	
+	public List<Ticket> findTicketsByEmployeeID(Employee employee){
+		return ticketDAO.getTicketsByEmployeeID(employee);
+	}
+	
 
 }

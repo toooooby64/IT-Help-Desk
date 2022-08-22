@@ -165,7 +165,7 @@ public class ViewTicketController implements Initializable {
 		statusCol.setCellValueFactory(new PropertyValueFactory<Ticket, Boolean>("status"));
 		assigned.setCellValueFactory(new PropertyValueFactory<Ticket, Boolean>("assigned"));
 		assignedTo.setCellValueFactory(new PropertyValueFactory<Ticket, Long>("assignedTo"));
-		items = FXCollections.observableArrayList(model.findAll());
+		items = FXCollections.observableArrayList(model.findTicketsByEmployeeID(employee));
 		table.setItems(items);
 	}
 

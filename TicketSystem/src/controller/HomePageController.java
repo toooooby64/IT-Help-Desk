@@ -45,9 +45,17 @@ public class HomePageController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		openTicketLabel.setText(String.valueOf(model.getNumOfOpenTicket()));
-		unassignedTicketLabel.setText(String.valueOf(model.getNumOfUnassignedTicket()));
 		name.setText(employee.getFirstName() + " " + employee.getLastName());
+		if(type.equals("Admin")) {
+			openTicketLabel.setText(String.valueOf(model.getNumOfOpenTicket()));
+			unassignedTicketLabel.setText(String.valueOf(model.getNumOfUnassignedTicket()));
+		}
+		else if(type.equals("IT")){
+			unassignedTicketLabel.setText(String.valueOf(model.findAssignedTickets(employee).size()));
+			openTicketLabel.setText(String.valueOf(model.findTicketsByEmployeeID(employee).size()));
+		}else {
+			openTicketLabel.setText(String.valueOf(model.findTicketsByEmployeeID(employee).size()));
+		}
 	}
 	
 	public void goToCreateScene(ActionEvent event) {
@@ -69,7 +77,7 @@ public class HomePageController implements Initializable {
 	
 	public void goToViewScene(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"+type+"/ViewTicket.fxml"));
-		loader.setControllerFactory(c -> {
+		loader.setControllerFactory(c -> { 
 			return new ViewTicketController(model,employee,type);
 		});
 		try {
@@ -117,6 +125,11 @@ public class HomePageController implements Initializable {
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	private void adminInfo() {
+		openTicketLabel.setText(String.valueOf(model.getNumOfOpenTicket()));
+		unassignedTicketLabel.setText(String.valueOf(model.getNumOfUnassignedTicket()));
 	}
 
 

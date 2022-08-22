@@ -75,8 +75,9 @@ public class PostgrseDAO implements TicketDAO {
 
 	@Override
 	public List<Ticket> findAll() {
+		System.out.println("ah;elas");
 		Statement statement;
-		String selectQuery = "SELECT * FROM \"Tickets\"";
+		String selectQuery = "SELECT * FROM public.\"Tickets\"";
 		ArrayList<Ticket> ticketList = new ArrayList<Ticket>(getRowCount());
 		try {
 			statement = connection.createStatement();
@@ -173,7 +174,38 @@ public class PostgrseDAO implements TicketDAO {
 				Ticket foundTicket = new Ticket(id, ticketName, userID, contactInfo, description, status, assigned,
 						assigedTo);
 				
-				System.out.println(foundTicket);
+				ticketList.add(foundTicket);
+			}
+
+			return ticketList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	@Override
+	public List<Ticket> getTicketsByEmployeeID(Employee employee) {
+		Statement statement;
+		String openTicketQuery = "SELECT * FROM \"Tickets\" WHERE \"userID\" = " + employee.getEmployeeID();
+		ArrayList<Ticket> ticketList = new ArrayList<Ticket>(getRowCount());
+		try {
+			statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(openTicketQuery);
+			while (result.next()) {
+				long id = result.getLong(1);
+				long userID = result.getLong(2);
+				String ticketName = result.getString(3);
+				String contactInfo = result.getString(4);
+				String description = result.getString(5);
+				boolean assigned = result.getBoolean(6);
+				String status = result.getString(7);
+				long assigedTo = result.getLong(8);
+				Ticket foundTicket = new Ticket(id, ticketName, userID, contactInfo, description, status, assigned,
+						assigedTo);
+				
 				ticketList.add(foundTicket);
 			}
 

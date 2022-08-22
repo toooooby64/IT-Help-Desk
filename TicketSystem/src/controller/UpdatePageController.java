@@ -13,11 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Employee;
 import model.Ticket;
@@ -133,6 +135,7 @@ public class UpdatePageController implements Initializable {
 			ticket.setAssignedTo(Long.valueOf(assign.getText()));
 		ticket.setAssigned(!unassign.isSelected());
 		model.updateTicket(ticket);
+		showConfirmAlert();
 	}
 	
 	public void itUpdateTable() {
@@ -140,6 +143,8 @@ public class UpdatePageController implements Initializable {
 		ticket.setDescription(description.getText());
 		ticket.setStatus(status.getValue());
 		model.updateTicket(ticket);
+		showConfirmAlert();
+		
 	}
 
 	private ObservableList<String> choiceBoxOptions() {
@@ -148,5 +153,15 @@ public class UpdatePageController implements Initializable {
 		list.add("Closed");
 		list.add("In Progress");
 		return list;
+	}
+	
+	private void showConfirmAlert() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Ticket Updated");
+		alert.setHeaderText("This ticket has been updated!");
+		//This wont be able to scale if multiple people were to submit a ticket at the same time but it works for this specific application
+		alert.setContentText("Thank you!" );
+		alert.showAndWait();
+		alert.onCloseRequestProperty().set(null);
 	}
 }

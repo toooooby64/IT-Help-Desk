@@ -16,4 +16,5 @@ public interface TicketDAO extends DAO {
 	public int getNumOfUnassignedTickets();
 	public List<Ticket> allOpenTickets();
 	public List<Ticket> allAssignedTickets(Employee employee);
+	public List<Ticket> getTicketsByEmployeeID(Employee employee);
 }

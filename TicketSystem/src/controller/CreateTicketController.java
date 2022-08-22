@@ -60,10 +60,12 @@ public class CreateTicketController implements Initializable{
 	public void onSubmit(ActionEvent event) {
 		if (title.getText().isEmpty() || userID.getText().isEmpty() || contact.getText().isEmpty()) {
 			showErrorAlert();
+		}else{
+			model.addNewTicket(title.getText(), Long.valueOf(userID.getText()), contact.getText(), description.getText());
+			showConfirmAlert();	
+			submitButton.setVisible(false);
 		}
-		model.addNewTicket(title.getText(), Long.valueOf(userID.getText()), contact.getText(), description.getText());
-		showConfirmAlert();
-		submitButton.setVisible(false);
+		
 	}
 	
 	public void goToHomePage(ActionEvent event) {
@@ -139,7 +141,7 @@ public class CreateTicketController implements Initializable{
 		alert.setTitle("Ticket Confirmed");
 		alert.setHeaderText("Your ticket has been submitted!");
 		//This wont be able to scale if multiple people were to submit a ticket at the same time but it works for this specific application
-		alert.setContentText("Your ticket number is \"ticket number\" \n Thank you!" );
+		alert.setContentText("Your ticket number is " + model.findAll().get(model.findAll().size()).getTicketID() +"\n Thank you!" );
 		alert.showAndWait();
 		alert.onCloseRequestProperty().set(null);
 	}

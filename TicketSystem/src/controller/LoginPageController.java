@@ -8,9 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Employee;
 import model.EmployeeModel;
@@ -37,23 +39,28 @@ public class LoginPageController {
 		this.employeeModel = employeeModel;
 	}
 
-	public boolean passwordCheck(long id, String password) {
-		foundEmployee = employeeModel.getEmployeeByID(id);
-		if (password.equals(foundEmployee.getPassword())) {
-			return true;
-		}
-		return false;
-	}
+
 
 	public void signIn(ActionEvent event) {
+		
 		if (passwordCheck(Long.valueOf(employeeID.getText()), password.getText()) && foundEmployee.getTitle().equals("Admin")) {
 			adminLogin(event);
 		}else if (passwordCheck(Long.valueOf(employeeID.getText()), password.getText()) && foundEmployee.getTitle().equals("IT")) {
 			itLogin(event);
 		}
 		else staffLogin(event);
+		
 	}
-
+	
+	private boolean passwordCheck(long id, String password) {
+		foundEmployee = employeeModel.getEmployeeByID(id);
+		if (foundEmployee == null) showErrorAlert();
+		if (password.equals(foundEmployee.getPassword())) {
+			return true;
+		}
+		return false;
+	}
+	
 	private void adminLogin(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/HomeView.fxml"));
 		loader.setControllerFactory(c -> {
@@ -88,9 +95,8 @@ public class LoginPageController {
 	
 	private void staffLogin(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff/HomeView.fxml"));
-		String staff = "staff";
 		loader.setControllerFactory(c -> {
-			return new HomePageController(model,foundEmployee,staff);
+			return new HomePageController(model,foundEmployee,"staff");
 		});
 		try {
 			root = loader.load();
@@ -101,6 +107,14 @@ public class LoginPageController {
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	private void showErrorAlert() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error Dialog");
+		alert.setHeaderText("Invalid Credentials");
+		alert.setContentText("Employee ID or password is incorrect try again!");
+		alert.showAndWait();
 	}
 	
 }
