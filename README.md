@@ -3,6 +3,8 @@
 This application allows users to create, update, view, resolve and assign tickets. I utilized Java and PostgreSQL for backend to store user and ticket information; and JavaFX to create the UI. The application has Admin, I.T., & Staff users and limits various actions depending on type of user.
 
 
+All members will need to login.
+
 ## Staff Member  
 
 Staff members are only allowed to create tickets and view/update the tickets they have created. All members are able to do this basic functionality. The video below shows how the application runs for staff members.
